@@ -18,5 +18,4 @@ urlpatterns = [
     path('relayDelete/<int:pk>/', api_views.RelayDelete.as_view(), name='relay-update'),
     
     
-    
 ]

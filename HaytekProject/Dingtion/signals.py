@@ -13,12 +13,14 @@ def relay_status_changed(sender, instance, created, **kwargs):
         url = f'http://{device.ip}:{device.port}/relay_cgi.cgi'
         
         # HTTP isteği için parametreleri hazırlıyoruz
+        
+        
         params = {
-            'type': '0',
+            'type': instance.type,
             'relay': instance.relay_id,  # Relay modelindeki uygun alanı kullanın
             'on': '1' if instance.is_active else '0',
-            'time': '0',
-            'pwd': '0',
+            'time': instance.time,
+            'pwd': '1515', # Relay Connect için password
         }
         
         # HTTP GET isteği gönderiyoruz
@@ -28,3 +30,5 @@ def relay_status_changed(sender, instance, created, **kwargs):
             print(f'Relay durumu başarıyla güncellendi: {instance}')
         except requests.exceptions.RequestException as e:
             print(f'Relay durumu güncellenirken hata oluştu: {e}')
+            
+      

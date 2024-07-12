@@ -19,11 +19,18 @@ class Device(models.Model):
 
 class Relay(models.Model):
    
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100,unique=True)
     relay_id = models.IntegerField(null=True,unique=True)
     device = models.ForeignKey(Device, on_delete=models.CASCADE, related_name='relays')
     is_active = models.BooleanField(default=False)
-
+    type = models.IntegerField(null=True,blank=True,default=0)
+    time = models.IntegerField(blank=True,null=True,default=0)
+    
+    def save(self, *args, **kwargs):
+        if self.time > 0:
+            self.is_active = True
+        super().save(*args, **kwargs)
+    
     def __str__(self):
         return f"{self.device.model} - {self.name}"
     

@@ -12,34 +12,34 @@ from Dingtion.api.permissions import IsAdminUserOrAuthorizedUser
 class DeviceList(generics.ListAPIView):
     queryset = Device.objects.all()
     serializer_class = DeviceSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAdminUserOrAuthorizedUser]
 
 class DeviceCreate(generics.CreateAPIView):
     queryset = Device.objects.all()
     serializer_class = DeviceSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAdminUserOrAuthorizedUser]
 
 class DeviceRetrieve(generics.RetrieveAPIView):
     queryset = Device.objects.all()
     serializer_class = DeviceSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAdminUserOrAuthorizedUser]
 
 class DeviceUpdate(generics.UpdateAPIView):
     queryset = Device.objects.all()
     serializer_class = DeviceSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAdminUserOrAuthorizedUser]
 
 class DeviceDelete(generics.DestroyAPIView):
     queryset = Device.objects.all()
     serializer_class = DeviceSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAdminUserOrAuthorizedUser]
 
 #! ********** Relay Views **********
 
 class RelayList(generics.ListAPIView):
     queryset = Relay.objects.all().order_by('relay_id')
     serializer_class = RelaySerializer
-    permission_classes =[IsAdminUserOrAuthorizedUser,]
+    # permission_classes =[IsAdminUserOrAuthorizedUser]
 
 class RelayCreate(generics.CreateAPIView):
     queryset = Relay.objects.all()
